@@ -42,11 +42,11 @@ public class CrimeFragment extends Fragment {
         });
 
 
-        mButtonDate = (Button)v.findViewById(R.id.crime_date);
+        mButtonDate = (Button) v.findViewById(R.id.crime_date);
         mButtonDate.setText(mCrime.getDate().toString());
         mButtonDate.setEnabled(false);
 
-        mTitleField = (EditText) v.findViewById(R.id.crme_title);
+        mTitleField = (EditText) v.findViewById(R.id.crime_title);
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
