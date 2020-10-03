@@ -16,7 +16,7 @@ public class CrimeLab {
             sCrimeLab = new CrimeLab(context);
         }
         return sCrimeLab;
-        }
+    }
 
 
     private CrimeLab(Context context) {
