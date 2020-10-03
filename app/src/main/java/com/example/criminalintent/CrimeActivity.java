@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 public class CrimeActivity extends SingleFragmentActivity {
 
-    protected  Fragment createFragment(){
+    protected  Fragment createFragment() {
         return new CrimeFragment();
     }
 }

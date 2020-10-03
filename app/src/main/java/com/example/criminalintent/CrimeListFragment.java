@@ -30,8 +30,8 @@ public class CrimeListFragment extends Fragment {
 
     private void updateUI() {
 
-        CrimeLab crimeLab = CrimeLab.get(getActivity());
-        List<Crime> crimes = crimeLab.getCrimes();
+       CrimeLab crimeLab = CrimeLab.get(getActivity());
+       List<Crime> crimes = crimeLab.getCrimes();
 
         mAdapter = new CrimeAdapter(crimes);
         mCrimeRecyclerView.setAdapter(mAdapter);
@@ -44,7 +44,7 @@ public class CrimeListFragment extends Fragment {
         private TextView mDateTextView;
         private Crime mCrime;
 
-        public void bind(Crime crime){
+        public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
