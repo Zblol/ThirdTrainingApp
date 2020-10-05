@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,17 +23,15 @@ public class CrimeListFragment extends Fragment {
 
         mCrimeRecyclerView = (RecyclerView) v.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         updateUI();
 
         return v;
-
     }
 
     private void updateUI() {
 
-       CrimeLab crimeLab = CrimeLab.get(getActivity());
-       List<Crime> crimes = crimeLab.getCrimes();
+        CrimeLab crimeLab = CrimeLab.get(getActivity());
+        List<Crime> crimes = crimeLab.getCrimes();
 
         mAdapter = new CrimeAdapter(crimes);
         mCrimeRecyclerView.setAdapter(mAdapter);
@@ -39,7 +39,8 @@ public class CrimeListFragment extends Fragment {
     }
 
 
-    private class CrimeHolder extends RecyclerView.ViewHolder {
+    private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private Crime mCrime;
@@ -48,16 +49,21 @@ public class CrimeListFragment extends Fragment {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
-
         }
-
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_list_crime, parent, false));
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
+            itemView.setOnClickListener(this);
+         }
 
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getActivity(),
+                    mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 
