@@ -31,9 +31,9 @@ public class CrimeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_crime,container,false);
+        View v = inflater.inflate(R.layout.fragment_crime, container, false);
 
-        mCheckSolvedBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mCheckSolvedBox = (CheckBox) v.findViewById(R.id.crime_solved);
         mCheckSolvedBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -64,7 +64,6 @@ public class CrimeFragment extends Fragment {
 
             }
         });
-
 
 
         return v;

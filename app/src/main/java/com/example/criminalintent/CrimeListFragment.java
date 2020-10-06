@@ -1,14 +1,19 @@
 package com.example.criminalintent;
+
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CrimeListFragment extends Fragment {
@@ -41,28 +46,33 @@ public class CrimeListFragment extends Fragment {
 
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private Crime mCrime;
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        private Crime mCrime;
+        private ImageView mSolvedImageView;
+
 
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            mDateTextView.setText((String) DateFormat.format("EEEE, MMM dd, yyyy", mCrime.getDate()));
+            mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
         }
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.item_list_crime, parent, false));
+            super(inflater.inflate(R.layout.list_item_crime, parent, false));
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
+            mSolvedImageView = (ImageView) itemView.findViewById(R.id.crime_solved);
             itemView.setOnClickListener(this);
-         }
+
+        }
 
         @Override
         public void onClick(View v) {
             Toast.makeText(getActivity(),
-                    mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT)
+                    mCrime.getTitle() + " clicked! ", Toast.LENGTH_SHORT)
                     .show();
         }
     }
@@ -70,13 +80,21 @@ public class CrimeListFragment extends Fragment {
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
         private List<Crime> mCrimes;
 
+
+        @Override
+        public int getItemViewType(int position) {
+            return super.getItemViewType(position);
+        }
+
         public CrimeAdapter(List<Crime> crimes) {
             mCrimes = crimes;
+
         }
 
         @Override
         public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInFlater = LayoutInflater.from(getActivity());
+
 
             return new CrimeHolder(layoutInFlater, parent);
         }
