@@ -46,12 +46,13 @@ public class CrimeListFragment extends Fragment {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 
-        if(mAdapter == null) {
+        if (mAdapter == null) {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
-        } else{
-
-            mAdapter.notifyDataSetChanged();
+        } else {
+            for (int indexValue = 0; indexValue < crimes.size(); indexValue++) {
+                mAdapter.notifyItemChanged(indexValue);
+            }
         }
     }
 
@@ -83,15 +84,13 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
             startActivity(intent);
         }
     }
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
         private List<Crime> mCrimes;
-
-
 
 
         public CrimeAdapter(List<Crime> crimes) {
@@ -109,8 +108,8 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(CrimeHolder holder, int position) {
-                Crime crime = mCrimes.get(position);
-                holder.bind(crime);
+            Crime crime = mCrimes.get(position);
+            holder.bind(crime);
 
 
         }
