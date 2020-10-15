@@ -26,6 +26,8 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mButtonDate;
     private CheckBox mCheckSolvedBox;
+    private Button firstButton;
+    private Button lastButton;
 
     public static CrimeFragment newInstanse(UUID crimeId) {
 
@@ -49,6 +51,9 @@ public class CrimeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crime, container, false);
+
+        firstButton= v.findViewById(R.id.firstButton);
+        lastButton = v.findViewById(R.id.lastButton);
 
         mCheckSolvedBox = (CheckBox) v.findViewById(R.id.crime_solved);
         mCheckSolvedBox.setChecked(mCrime.isSolved());
@@ -81,6 +86,20 @@ public class CrimeFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        firstButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CrimePagerActivity)getActivity()).goToFistPage();
+            }
+        });
+
+        lastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CrimePagerActivity)getActivity()).goToLastPage();
             }
         });
 
