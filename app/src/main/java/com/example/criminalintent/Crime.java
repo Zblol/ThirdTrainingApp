@@ -11,13 +11,25 @@ public class Crime {
     private UUID mId;
     private String mTitle;
     private Date mDate;
+    private  Date mTime;
     private boolean mSolved;
 
 
     public Crime() {
         mId = UUID.randomUUID();
         mDate = new Date();
+        mTime = new Date();
     }
+
+
+    public Date getTime() {
+        return mTime;
+    }
+
+    public void setTime(Date time) {
+        mTime = time;
+    }
+
 
     public UUID getId() {
         return mId;
