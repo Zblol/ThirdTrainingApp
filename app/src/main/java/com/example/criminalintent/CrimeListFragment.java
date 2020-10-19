@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
