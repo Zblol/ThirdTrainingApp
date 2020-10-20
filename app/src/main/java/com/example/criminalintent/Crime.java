@@ -11,7 +11,7 @@ public class Crime {
     private UUID mId;
     private String mTitle;
     private Date mDate;
-    private  Date mTime;
+    private Date mTime;
     private boolean mSolved;
 
 

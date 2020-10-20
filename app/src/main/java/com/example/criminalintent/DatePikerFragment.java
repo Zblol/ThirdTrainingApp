@@ -68,21 +68,21 @@ public class DatePikerFragment extends DialogFragment {
                                 int year = mDatePicker.getYear();
                                 int month = mDatePicker.getMonth();
                                 int day = mDatePicker.getDayOfMonth();
-                                Date date =     new GregorianCalendar(year,month,day).getTime();
-                                sendResult(Activity.RESULT_OK,date);
+                                Date date = new GregorianCalendar(year, month, day).getTime();
+                                sendResult(Activity.RESULT_OK, date);
                             }
                         })
                 .create();
     }
 
     private void sendResult(int resultCode, Date date) {
-        if(getTargetFragment() == null) {
+        if (getTargetFragment() == null) {
             return;
         }
         Intent intent = new Intent();
         intent.putExtra(EXTRA_DATE, date);
 
-        getTargetFragment().onActivityResult(getTargetRequestCode(),resultCode,intent);
+        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 
 }

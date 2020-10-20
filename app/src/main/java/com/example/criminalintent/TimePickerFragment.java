@@ -63,23 +63,23 @@ public class TimePickerFragment extends DialogFragment {
                                 Calendar calendar1 = Calendar.getInstance();
                                 calendar.setTime(time);
                                 calendar.set(Calendar.HOUR_OF_DAY, hours);
-                                calendar.set(Calendar.MINUTE, minute);
-                                Date time  = calendar.getTime();
+                                calendar.set(Calendar.MINUTE, minutes);
+                                Date time = calendar.getTime();
                                 sendResult(Activity.RESULT_OK, time);
                             }
                         })
                 .create();
     }
 
-    private void sendResult(int requestCode, Date time ){
+    private void sendResult(int requestCode, Date time) {
 
-        if(getTargetFragment() == null){
+        if (getTargetFragment() == null) {
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_TIME,time);
+        intent.putExtra(EXTRA_TIME, time);
 
-        getTargetFragment().onActivityResult(getTargetRequestCode(),requestCode, intent);
+        getTargetFragment().onActivityResult(getTargetRequestCode(), requestCode, intent);
 
     }
 }
