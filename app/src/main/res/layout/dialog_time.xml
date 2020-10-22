@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TimePicker
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dialog_time_piker"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:timePickerMode="spinner">
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
-</TimePicker>
+    <TimePicker
+        android:id="@+id/dialog_time_piker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TimePicker>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

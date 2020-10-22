@@ -37,6 +37,9 @@ public class TimePickerFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+
+        View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_time, null);
+
         final Date time = (Date) getArguments().getSerializable(ARG_TIME);
 
         final Calendar calendar = Calendar.getInstance();
@@ -44,7 +47,6 @@ public class TimePickerFragment extends DialogFragment {
         int hours = calendar.get(calendar.HOUR_OF_DAY);
         final int minute = calendar.get(calendar.MINUTE);
 
-        View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_time, null);
 
         mTimePicker = (TimePicker) v.findViewById(R.id.dialog_time_piker);
         mTimePicker.setCurrentHour(hours);
@@ -63,23 +65,22 @@ public class TimePickerFragment extends DialogFragment {
                                 Calendar calendar1 = Calendar.getInstance();
                                 calendar.setTime(time);
                                 calendar.set(Calendar.HOUR_OF_DAY, hours);
-                                calendar.set(Calendar.MINUTE, minute);
-                                Date time  = calendar.getTime();
+                                calendar.set(Calendar.MINUTE, minutes);
+                                Date time = calendar.getTime();
                                 sendResult(Activity.RESULT_OK, time);
                             }
                         })
                 .create();
     }
 
-    private void sendResult(int requestCode, Date time ){
-
-        if(getTargetFragment() == null){
+    private void sendResult(int resultCode, Date time) {
+        if (getTargetFragment() == null) {
             return;
         }
+
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_TIME,time);
+        intent.putExtra(EXTRA_TIME, time);
 
-        getTargetFragment().onActivityResult(getTargetRequestCode(),requestCode, intent);
-
+        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 }
