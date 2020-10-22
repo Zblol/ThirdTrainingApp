@@ -17,7 +17,7 @@ import java.net.Inet4Address;
 import java.util.List;
 import java.util.UUID;
 
-public class CrimePagerActivity extends AppCompatActivity {
+public class CrimePagerActivity extends AppCompatActivity implements  CrimeFragment.Callbacks {
 
     private ViewPager mViewPager;
     private List<Crime> mCrimes;
@@ -43,7 +43,7 @@ public class CrimePagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime_pager);
 
-        final UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+        UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
 
         mViewPager = (ViewPager) findViewById(R.id.crime_view_pager);
 
@@ -72,6 +72,15 @@ public class CrimePagerActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onCrimeUpdate(Crime crime) {
+
+    }
+
+    @Override
+    public void onCrimeSelected(Crime crime) {
 
     }
 }

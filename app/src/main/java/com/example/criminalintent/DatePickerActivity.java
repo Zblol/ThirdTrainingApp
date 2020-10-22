@@ -12,7 +12,7 @@ public class DatePickerActivity extends SingleFragmentActivity {
     private static final String EXTRA_CRIME_DATE = "com.example.criminalintent.crime_date";
 
     public static Intent newIntent(Context packageContext, Date date) {
-        Intent intent = new Intent(packageContext, DatePikerFragment.class);
+        Intent intent = new Intent(packageContext, DatePickerActivity.class);
         intent.putExtra(EXTRA_CRIME_DATE, date);
         return intent;
     }
@@ -20,6 +20,6 @@ public class DatePickerActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
         Date date = (Date) getIntent().getSerializableExtra(EXTRA_CRIME_DATE);
-        return DatePikerFragment.newInstance(date);
+        return DatePickerFragment.newInstance(date);
     }
 }

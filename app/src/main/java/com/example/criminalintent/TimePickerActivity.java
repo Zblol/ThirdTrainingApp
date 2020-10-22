@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Date;
 
-public class TimePikerActivity extends SingleFragmentActivity {
+public class TimePickerActivity extends SingleFragmentActivity {
 
-    private static final String EXTRA_CRIME_TIME = "com.example.criminalIntent.crime_time";
+    private static final String EXTRA_CRIME_TIME = "com.example.criminalintent.crime_time";
 
     public static Intent newIntent(Context packageContext, Date time) {
         Intent intent = new Intent(packageContext, TimePickerFragment.class);
