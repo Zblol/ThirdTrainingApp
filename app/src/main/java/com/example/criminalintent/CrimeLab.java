@@ -1,6 +1,9 @@
 package com.example.criminalintent;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +12,9 @@ import java.util.UUID;
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
-    List<Crime> mCrimes;
+    private  Context mContext;
+    private SQLiteDatabase mDatabase;
+
 
 
 
@@ -21,32 +26,39 @@ public class CrimeLab {
     }
 
 
+
     private CrimeLab(Context context) {
-        mCrimes = new ArrayList<>();
+        mContext = context.getApplicationContext();
+        mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
 
         }
 
 
     public void addCrimes(Crime c) {
-        mCrimes.add(c);
     }
 
     public List<Crime> getCrimes() {
-        return mCrimes;
+        return new ArrayList<>();
     }
 
     public void deleteCrime(UUID crimeId) {
-        Crime crime = getCrime(crimeId);
-        mCrimes.remove(crime);
+
     }
 
     public Crime getCrime(UUID id) {
-        for (Crime crime : mCrimes) {
-            if (crime.getId().equals(id)) {
-                return crime;
-            }
-        }
+
         return null;
+    }
+
+    private static ContentValues getContentValues(Crime crime) {
+
+        ContentValues values = new ContentValues();
+        values.put(CrimeDbSchema.CrimeTable.Cols.UUID, crime.getId().toString());
+        values.put(CrimeDbSchema.CrimeTable.Cols.TITLE, crime.getTitle());
+        values.put(CrimeDbSchema.CrimeTable.Cols.DATE, crime.getDate().toString());
+        values.put(CrimeDbSchema.CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0 );
+
+        return  values;
     }
 }
 

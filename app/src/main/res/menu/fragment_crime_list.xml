@@ -13,10 +13,4 @@
         android:title="@string/show_subtitle"
         app:showAsAction="ifRoom">
     </item>
-
-    <item android:id="@+id/delete_show"
-        android:title="Delete"
-        app:showAsAction="ifRoom">
-
-    </item>
 </menu>
